@@ -54,4 +54,24 @@ public class CalculatorTest {
 
         assertThat(actualResult, is(200.0));
     }
+
+    @Test
+    public void shouldReturnCorrectValueWhenAValueIsDividedAsSecondCommand() {
+        Calculator calculator = new Calculator();
+        calculator.processCommand("add 10");
+
+        double actualResult = calculator.processCommand("divide 2");
+
+        assertThat(actualResult, is(5.0));
+    }
+
+    @Test
+    public void shouldSetTheCalculatorStateToZeroWhenCancelCommandIsPassed() {
+        Calculator calculator = new Calculator();
+        calculator.processCommand("add 10");
+
+        double actualResult = calculator.processCommand("cancel");
+
+        assertThat(actualResult, is(0.0));
+    }
 }
