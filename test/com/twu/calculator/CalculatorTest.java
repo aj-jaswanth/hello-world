@@ -29,9 +29,19 @@ public class CalculatorTest {
     public void shouldReturnCorrectValueWhenAValueIsAddedAsSecondCommand() {
         Calculator calculator = new Calculator();
         calculator.processCommand("add 10");
-        
+
         double actualResult = calculator.processCommand("add 20");
 
         assertThat(actualResult, is(30.0));
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenAValueIsSubtractedAsSecondCommand() {
+        Calculator calculator = new Calculator();
+        calculator.processCommand("add 30");
+
+        double actualResult = calculator.processCommand("subtract 20");
+
+        assertThat(actualResult, is(10.0));
     }
 }

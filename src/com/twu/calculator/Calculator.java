@@ -12,6 +12,9 @@ public class Calculator {
             case "add":
                 result += operand;
                 break;
+            case "subtract":
+                result -= operand;
+                break;
         }
         return result;
     }
