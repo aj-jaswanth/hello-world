@@ -44,4 +44,14 @@ public class CalculatorTest {
 
         assertThat(actualResult, is(10.0));
     }
+
+    @Test
+    public void shouldReturnCorrectValueWhenAValueIsMultipliedAsSecondCommand() {
+        Calculator calculator = new Calculator();
+        calculator.processCommand("add 10");
+
+        double actualResult = calculator.processCommand("multiply 20");
+
+        assertThat(actualResult, is(200.0));
+    }
 }

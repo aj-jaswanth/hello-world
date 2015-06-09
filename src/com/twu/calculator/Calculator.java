@@ -15,6 +15,9 @@ public class Calculator {
             case "subtract":
                 result -= operand;
                 break;
+            case "multiply":
+                result *= operand;
+                break;
         }
         return result;
     }
