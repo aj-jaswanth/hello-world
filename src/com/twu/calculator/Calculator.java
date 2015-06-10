@@ -7,6 +7,8 @@ public class Calculator {
     public double processCommand(String command) {
         if (command.equals("cancel"))
             return (result = 0);
+        if (command.equals("exit"))
+            System.exit(0);
         String[] splitCommand = command.split(" ");
         String operation = splitCommand[0];
         double operand = Double.parseDouble(splitCommand[1]);
