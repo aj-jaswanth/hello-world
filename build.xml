@@ -1,7 +1,7 @@
 <project default="test">
 
   <property name="lib.dir" value="lib"/>
-  <property name="main-class"  value="com.twu.calculator.Calculator"/>
+  <property name="main-class"  value="com.twu.model.Model"/>
 
 
   <path id="classpath">
@@ -42,7 +42,7 @@
     <mkdir dir="out/jar"/>
     <jar destfile="out/jar/LineLength.jar" basedir="out/src/classes">
       <manifest>
-        <attribute name="Main-Class" value="com.twu.calculator.Calculator"/>
+        <attribute name="Main-Class" value="com.twu.model.Model"/>
       </manifest>
     </jar>
   </target>

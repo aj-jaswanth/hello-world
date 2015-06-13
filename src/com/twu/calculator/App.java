@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class App {
     public void start() {
-        Calculator calculator = new Calculator();
+        Model model = new Model();
         Scanner input = new Scanner(System.in);
         String command;
         while (true) {
             System.out.print("> ");
             command = input.nextLine();
-            System.out.println(calculator.processCommand(command));
+            System.out.println(model.processCommand(command));
         }
     }
 }
