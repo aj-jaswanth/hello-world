@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class AddTest {
@@ -14,6 +15,17 @@ public class AddTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(-10);
+        Add add = new Add(model, 20);
+
+        add.execute();
+        String actualResult = model.toString();
+
+        assertEquals("10.0", actualResult);
     }
 
     @Test

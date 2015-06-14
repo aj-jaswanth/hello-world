@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class AbsoluteTest {
@@ -14,6 +15,17 @@ public class AbsoluteTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(-10);
+        Absolute absolute = new Absolute(model);
+
+        absolute.execute();
+        String actualResult = model.toString();
+
+        assertEquals("10.0", actualResult);
     }
 
     @Test

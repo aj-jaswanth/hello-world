@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class CubeRootTest {
@@ -14,6 +15,17 @@ public class CubeRootTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(64);
+        CubeRoot cubeRoot = new CubeRoot(model);
+
+        cubeRoot.execute();
+        String actualResult = model.toString();
+
+        assertEquals("4.0", actualResult);
     }
 
     @Test

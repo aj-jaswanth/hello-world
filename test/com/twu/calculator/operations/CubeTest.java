@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class CubeTest {
@@ -14,6 +15,17 @@ public class CubeTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(4);
+        Cube cube = new Cube(model);
+
+        cube.execute();
+        String actualResult = model.toString();
+
+        assertEquals("64.0", actualResult);
     }
 
     @Test

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class CancelTest {
@@ -14,6 +15,17 @@ public class CancelTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(-10);
+        Cancel cancel = new Cancel(model);
+
+        cancel.execute();
+        String actualResult = model.toString();
+
+        assertEquals("0.0", actualResult);
     }
 
     @Test

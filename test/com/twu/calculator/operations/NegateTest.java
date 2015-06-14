@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class NegateTest {
@@ -14,6 +15,17 @@ public class NegateTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(-10);
+        Negate negate = new Negate(model);
+
+        negate.execute();
+        String actualResult = model.toString();
+
+        assertEquals("10.0", actualResult);
     }
 
     @Test

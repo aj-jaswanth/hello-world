@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class DivideTest {
@@ -14,6 +15,17 @@ public class DivideTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(24);
+        Divide divide = new Divide(model, 3);
+
+        divide.execute();
+        String actualResult = model.toString();
+
+        assertEquals("8.0", actualResult);
     }
 
     @Test

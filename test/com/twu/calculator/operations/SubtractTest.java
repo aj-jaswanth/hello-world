@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class SubtractTest {
@@ -14,6 +15,17 @@ public class SubtractTest {
     @Before
     public void setUp() {
         model = new Model();
+    }
+
+    @Test
+    public void shouldReturnCorrectValue() {
+        model.add(-10);
+        Subtract subtract = new Subtract(model, 20);
+
+        subtract.execute();
+        String actualResult = model.toString();
+
+        assertEquals("-30.0", actualResult);
     }
 
     @Test
