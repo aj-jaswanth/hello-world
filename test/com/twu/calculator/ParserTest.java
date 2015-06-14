@@ -124,4 +124,13 @@ public class ParserTest {
 
         assertEquals(expectedOperation, actualOperation);
     }
+
+    @Test
+    public void shouldReturnNullWhenInvalidOperandIsPassed() {
+        Operation actualOperation = parser.parse("subtract ab");
+
+        Operation expectedOperation = null;
+
+        assertEquals(expectedOperation, actualOperation);
+    }
 }

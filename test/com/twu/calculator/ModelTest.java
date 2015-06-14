@@ -91,4 +91,58 @@ public class ModelTest {
 
         assertEquals("10.0\n0.0\n", actualResult);
     }
+
+    @Test
+    public void shouldReturnCorrectValueWhenAbsoluteCommandIsPassed() {
+        model.add(-10);
+        model.absolute();
+        String actualResult = outputContent.toString();
+
+        assertEquals("-10.0\n10.0\n", actualResult);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenNegateCommandIsPassed() {
+        model.add(10);
+        model.negate();
+        String actualResult = outputContent.toString();
+
+        assertEquals("10.0\n-10.0\n", actualResult);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenSquareCommandIsPassed() {
+        model.add(16);
+        model.square();
+        String actualResult = outputContent.toString();
+
+        assertEquals("16.0\n256.0\n", actualResult);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenSquareRootCommandIsPassed() {
+        model.add(16);
+        model.squareRoot();
+        String actualResult = outputContent.toString();
+
+        assertEquals("16.0\n4.0\n", actualResult);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenCubeCommandIsPassed() {
+        model.add(4);
+        model.cube();
+        String actualResult = outputContent.toString();
+
+        assertEquals("4.0\n64.0\n", actualResult);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenCubeRootCommandIsPassed() {
+        model.add(64);
+        model.cubeRoot();
+        String actualResult = outputContent.toString();
+
+        assertEquals("64.0\n4.0\n", actualResult);
+    }
 }
