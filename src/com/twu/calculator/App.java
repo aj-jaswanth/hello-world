@@ -1,26 +1,27 @@
 package com.twu.calculator;
 
-import java.util.Scanner;
-
 public class App {
 
-    private final Scanner input;
     private Parser parser;
+    private History history;
+    private View view;
 
-    public App(Scanner input, Parser parser) {
-        this.input = input;
+    public App(Parser parser, History history, View view) {
         this.parser = parser;
+        this.history = history;
+        this.view = view;
     }
 
     public void start() {
         String command;
         while (true) {
-            command = input.nextLine();
+            command = view.readInput();
             if (isExit(command))
                 return;
             Operation operation = parser.parse(command);
             if (operation != null) {
                 operation.execute();
+                history.save(operation);
             }
         }
     }

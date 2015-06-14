@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +19,7 @@ public class ModelTest {
     @Before
     public void setUp() {
         model = new Model();
-        view = new View();
+        view = new View(new Scanner(System.in));
         outputContent = new ByteArrayOutputStream();
         model.addObserver(view);
         System.setOut(new PrintStream(outputContent));

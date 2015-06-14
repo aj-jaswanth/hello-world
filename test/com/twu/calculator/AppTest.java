@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -24,12 +25,12 @@ public class AppTest {
     @Test
     public void shouldCorrectlyProcessTheGivenCommands() {
         ByteArrayInputStream inputContent = new ByteArrayInputStream("add 10\nmultiply 20\nexit".getBytes());
-        View view = new View();
+        View view = new View(new Scanner(inputContent));
         Model model = new Model();
         model.addObserver(view);
         Parser parser = new Parser(model);
-        Scanner input = new Scanner(inputContent);
-        App app = new App(input, parser);
+        History history = new History(new ArrayList<Operation>());
+        App app = new App(parser, history, view);
 
         app.start();
         String actualResult = outputContent.toString();
