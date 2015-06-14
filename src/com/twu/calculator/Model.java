@@ -1,91 +1,86 @@
-    package com.twu.calculator;
+package com.twu.calculator;
 
-    import javax.xml.ws.soap.MTOM;
 
-    public class Model {
+import java.util.Observable;
 
-        private double accumulator;
+public class Model extends Observable {
 
-        public double processCommand(String command) {
-            if (command.equals("cancel"))
-                return (accumulator = 0);
-            if (command.equals("exit"))
-                System.exit(0);
-            String[] splitCommand = command.split(" ");
-            String operation = splitCommand[0];
-            double operand = Double.parseDouble(splitCommand[1]);
-            switch (operation) {
-                case "add":
-                    return add(operand);
-                case "subtract":
-                    return subtract(operand);
-                case "multiply":
-                    return multiply(operand);
-                case "divide":
-                    return divide(operand);
-                case "abs":
-                    return absolute();
-                case "neg":
-                    return negate();
-                case "sqrt":
-                    return squareRoot();
-                case "sqr":
-                    return square();
-                case "cube":
-                    return cube();
-                case "cubert":
-                    return cubeRoot();
-            }
-            return 0;
-        }
+    private double accumulator;
 
-        public double add(double operand) {
-            accumulator += operand;
-            return accumulator;
-        }
-
-        public double subtract(double operand) {
-            accumulator -= operand;
-            return accumulator;
-        }
-
-        public double multiply(double operand) {
-            accumulator *= operand;
-            return accumulator;
-        }
-
-        public double divide(double operand) {
-            accumulator /= operand;
-            return accumulator;
-        }
-
-        public double absolute() {
-            accumulator = Math.abs(accumulator);
-            return accumulator;
-        }
-
-        public double negate() {
-            accumulator = -accumulator;
-            return accumulator;
-        }
-
-        public double square() {
-            accumulator *= accumulator;
-            return accumulator;
-        }
-
-        public double squareRoot() {
-            accumulator = Math.sqrt(accumulator);
-            return accumulator;
-        }
-
-        public double cube() {
-            accumulator = Math.pow(accumulator, 3);
-            return accumulator;
-        }
-
-        public double cubeRoot() {
-            accumulator = Math.cbrt(accumulator);
-            return accumulator;
-        }
+    public void add(double operand) {
+        accumulator += operand;
+        notifyChanges();
     }
+
+    public void subtract(double operand) {
+        accumulator -= operand;
+        notifyChanges();
+    }
+
+    public void multiply(double operand) {
+        accumulator *= operand;
+        notifyChanges();
+    }
+
+    public void divide(double operand) {
+        accumulator /= operand;
+        notifyChanges();
+    }
+
+    public void absolute() {
+        accumulator = Math.abs(accumulator);
+        notifyChanges();
+    }
+
+    public void negate() {
+        accumulator = -accumulator;
+        notifyChanges();
+    }
+
+    public void square() {
+        accumulator *= accumulator;
+        notifyChanges();
+    }
+
+    public void squareRoot() {
+        accumulator = Math.sqrt(accumulator);
+        notifyChanges();
+    }
+
+    public void cube() {
+        accumulator = Math.pow(accumulator, 3);
+        notifyChanges();
+    }
+
+    public void cubeRoot() {
+        accumulator = Math.cbrt(accumulator);
+        notifyChanges();
+    }
+
+    public void cancel() {
+        accumulator = 0;
+        notifyChanges();
+    }
+
+    private void notifyChanges() {
+        setChanged();
+        notifyObservers(accumulator);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Model model = (Model) o;
+
+        return Double.compare(model.accumulator, accumulator) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(accumulator);
+        return (int) (temp ^ (temp >>> 32));
+    }
+}

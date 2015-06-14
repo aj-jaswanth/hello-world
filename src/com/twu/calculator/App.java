@@ -3,14 +3,29 @@ package com.twu.calculator;
 import java.util.Scanner;
 
 public class App {
+
+    private final Scanner input;
+    private Parser parser;
+
+    public App(Scanner input, Parser parser) {
+        this.input = input;
+        this.parser = parser;
+    }
+
     public void start() {
-        Model model = new Model();
-        Scanner input = new Scanner(System.in);
         String command;
         while (true) {
-            System.out.print("> ");
             command = input.nextLine();
-            System.out.println(model.processCommand(command));
+            if (isExit(command))
+                return;
+            Operation operation = parser.parse(command);
+            if (operation != null) {
+                operation.execute();
+            }
         }
+    }
+
+    private boolean isExit(String command) {
+        return command.equals("exit");
     }
 }
