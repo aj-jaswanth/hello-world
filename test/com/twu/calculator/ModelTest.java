@@ -30,6 +30,14 @@ public class ModelTest {
     }
 
     @Test
+    public void shouldReturnCorrectStringRepresentation() {
+        model.add(2331);
+        String actualResult = model.toString();
+
+        assertEquals("2331.0", actualResult);
+    }
+
+    @Test
     public void shouldReturnZeroWhenZeroIsAddedAsInitialCommand() {
         model.add(0);
         String actualResult = outputContent.toString();

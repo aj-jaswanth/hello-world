@@ -83,4 +83,9 @@ public class Model extends Observable {
         long temp = Double.doubleToLongBits(accumulator);
         return (int) (temp ^ (temp >>> 32));
     }
+
+    @Override
+    public String toString() {
+        return accumulator + "";
+    }
 }
